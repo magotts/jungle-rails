@@ -1,0 +1,68 @@
+
+ <%# <% @bee = LineItem.joins(:order, :product).where(line_items: {order_id: @order.id}) %> %>
+    <%# Order id: <%= @order.id %> <br /> %>
+    <%# <% @bee.each do | lists |%> %>
+     <%# Image(products): <br /> %>
+     <%# Name(products): ItemName,  Qty(line_items): <%= lists.quantity %>  
+     <%# Total: <%= lists.total_price_cents / 100<br /> %> %> %>
+     <%# Description (products): <br /> %>
+     <%# Total Amount: <br /> %>
+     <%# Email: (orders) <br /><br />> %>
+     <%# Product id (orders,products): <%= lists.product_id %><br /> %>
+    
+  <%# <% end %> %>
+
+ <div class="panel panel-default items">
+ Email: (orders)
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th colspan="2">Product</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+     
+      <tbody>
+ <% @bee = LineItem.joins(:order, :product).where(line_items: {order_id: @order.id}) %>
+    Order id: <%= @order.id %> <br />
+    <% @bee.each do | lists |%>
+      <tr>
+  <td>
+    Image(products): </td>
+  <td>
+    <h4>Name(products): ItemName</h4>
+    <br>
+    <p>Description (products):</p>
+  </td>
+  <td>
+   <%= lists.item_price_cents / 100 %>
+  </td>
+  <td>
+    Qty(line_items): <%= lists.quantity %>
+  </td>
+  <td>
+    Total: <%= lists.total_price_cents / 100 %>
+  </td>
+</tr>
+
+     
+     Product id (orders,products): <%= lists.product_id %><br />
+    
+  <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="4">
+            TOTAL:
+          </th>
+          <th>
+           <%# $<%= cart_subtotal_cents / 100.0 %> %>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  
+    </div>

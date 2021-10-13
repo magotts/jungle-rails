@@ -1,5 +1,6 @@
  <div class="panel panel-default items">
- 
+       <h3>Email Address: <%= @user_email %></h3>
+
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -12,11 +13,8 @@
       
       <tbody>
 
-      <% user_email = Order.find_by(id: @order.id).email %>
-      <h3>Email Address: <%= user_email %></h3>
 
- <% @order_details = LineItem.joins(:order, :product).where(line_items: {order_id: @order.id} ) %>
-        <% @order_details.each do | lists |%>
+   <% @order_details.each do | lists |%>
       <tr>
   <td>
     Image: <img width="120" height="120" src="<%= lists.product.image %>" /> </td>
@@ -35,7 +33,6 @@
     <% @total_amount = lists.total_price_cents / 100 %>
     <%= @total_amount %>
   </td>
-
 </tr>
     
   <% end %>
@@ -46,8 +43,7 @@
             TOTAL:
           </th>
           <th>
-            <% totals = Order.find_by(id: @order.id).total_cents %>
-           $<%= totals / 100 %>
+           $<%= @totals %>
           </th>
         </tr>
       </tfoot>

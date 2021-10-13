@@ -25,7 +25,7 @@
       </thead>
      
       <tbody>
- <% @bee = LineItem.joins(:order, :product).where(line_items: {order_id: @order.id}) %>
+ <% @bee = LineItem.joins(:order, :product).where(line_items: {order_id: @order.id} ) %>
     Order id: <%= @order.id %> <br />
     <% @bee.each do | lists |%>
       <tr>

@@ -1,5 +1,4 @@
 class Admin::ProductsController < ApplicationController
-  puts ENV["USERNAME"]
   http_basic_authenticate_with name: ENV["USERNAME"], password: ENV["PASSWORD"]
 
 

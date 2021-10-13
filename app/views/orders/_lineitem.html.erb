@@ -15,8 +15,8 @@
       <% user_email = Order.find_by(id: @order.id).email %>
       <h3>Email Address: <%= user_email %></h3>
 
- <% @bee = LineItem.joins(:order, :product).where(line_items: {order_id: @order.id} ) %>
-        <% @bee.each do | lists |%>
+ <% @order_details = LineItem.joins(:order, :product).where(line_items: {order_id: @order.id} ) %>
+        <% @order_details.each do | lists |%>
       <tr>
   <td>
     Image: <img width="120" height="120" src="<%= lists.product.image %>" /> </td>

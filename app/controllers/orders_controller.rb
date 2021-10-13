@@ -2,6 +2,10 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @order_details = LineItem.joins(:order, :product).where(line_items: {order_id: @order.id} ) 
+     @user_email = Order.find(params[:id]).email
+     @totals = Order.find(params[:id]).total_cents / 100
+    
   end
 
   def create
@@ -56,4 +60,6 @@ class OrdersController < ApplicationController
     order
   end
 
+  
+  
 end

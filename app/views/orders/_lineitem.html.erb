@@ -1,19 +1,5 @@
-
- <%# <% @bee = LineItem.joins(:order, :product).where(line_items: {order_id: @order.id}) %> %>
-    <%# Order id: <%= @order.id %> <br /> %>
-    <%# <% @bee.each do | lists |%> %>
-     <%# Image(products): <br /> %>
-     <%# Name(products): ItemName,  Qty(line_items): <%= lists.quantity %>  
-     <%# Total: <%= lists.total_price_cents / 100<br /> %> %> %>
-     <%# Description (products): <br /> %>
-     <%# Total Amount: <br /> %>
-     <%# Email: (orders) <br /><br />> %>
-     <%# Product id (orders,products): <%= lists.product_id %><br /> %>
-    
-  <%# <% end %> %>
-
  <div class="panel panel-default items">
- Email: (orders)
+ 
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -23,32 +9,34 @@
           <th>Price</th>
         </tr>
       </thead>
-     
+      
       <tbody>
+
+      <% user_email = Order.find_by(id: @order.id).email %>
+      <h3>Email Address: <%= user_email %></h3>
+
  <% @bee = LineItem.joins(:order, :product).where(line_items: {order_id: @order.id} ) %>
-    Order id: <%= @order.id %> <br />
-    <% @bee.each do | lists |%>
+        <% @bee.each do | lists |%>
       <tr>
   <td>
-    Image(products): </td>
+    Image: <img width="120" height="120" src="<%= lists.product.image %>" /> </td>
   <td>
-    <h4>Name(products): ItemName</h4>
+    <h4>Name: <%= lists.product.name %></h4>
     <br>
-    <p>Description (products):</p>
+    <p>Description: <%= lists.product.description %></p>
   </td>
   <td>
    <%= lists.item_price_cents / 100 %>
   </td>
   <td>
-    Qty(line_items): <%= lists.quantity %>
+    <%= lists.quantity %>
   </td>
   <td>
-    Total: <%= lists.total_price_cents / 100 %>
+    <% @total_amount = lists.total_price_cents / 100 %>
+    <%= @total_amount %>
   </td>
-</tr>
 
-     
-     Product id (orders,products): <%= lists.product_id %><br />
+</tr>
     
   <% end %>
       </tbody>
@@ -58,7 +46,8 @@
             TOTAL:
           </th>
           <th>
-           <%# $<%= cart_subtotal_cents / 100.0 %> %>
+            <% totals = Order.find_by(id: @order.id).total_cents %>
+           $<%= totals / 100 %>
           </th>
         </tr>
       </tfoot>

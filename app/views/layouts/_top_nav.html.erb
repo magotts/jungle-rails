@@ -42,7 +42,6 @@
             <li><%= link_to 'Dashboard', [:admin, :root] %></li>
             <li><%= link_to 'Products',  [:admin, :products] %></li>
             <li><%= link_to 'Categories', [:admin, :categories] %></li>
-
           </ul>
         </li>
         <li>
@@ -52,13 +51,16 @@
           <% end %>
         </li> 
 
-        
-         <% if current_user %>
-         <li> Signed in as <%= current_user.email %> | <%= link_to "Logout", '/logout' %>  
+         <span class="navbar-text">
+          <% if current_user %>
+          Signed in as <%= current_user.email %> | <%= link_to "Logout", '/logout' %>  
          <% else %>
         <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
-        <% end %>
-      
+        <% end %>  
+        </span>
+       
+  
+      </ul>
     </div>
   
      

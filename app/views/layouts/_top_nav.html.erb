@@ -1,4 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top">
+
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -17,6 +18,7 @@
         <li>
           <%= link_to 'About Us', "/about" %>
         </li>
+ 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             Categories
@@ -44,11 +46,21 @@
           </ul>
         </li>
         <li>
+        
           <%= link_to cart_path do %>
             <%= fa_icon "shopping-cart" %> My Cart (<%= cart.size %>)
           <% end %>
-        </li>
-      </ul>
+        </li> 
+
+        
+         <% if current_user %>
+         <li> Signed in as <%= current_user.email %> | <%= link_to "Logout", '/logout' %>  
+         <% else %>
+        <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
+        <% end %>
+      
     </div>
+  
+     
   </div>
 </nav>

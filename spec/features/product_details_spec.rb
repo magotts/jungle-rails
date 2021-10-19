@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "ProductDetails", type: :feature, js: true do
+RSpec.feature "users can navigate from the home page to the product detail page by clicking on a product.", type: :feature, js: true do
   before :each do
     @category = Category.create! name: 'Apparel'
 
@@ -17,9 +17,7 @@ RSpec.feature "ProductDetails", type: :feature, js: true do
 
   scenario "They see the product description" do
     # ACT
-    visit root_path
-    # click_link('Details', match: :first)
-   
+    visit root_path   
     first('article.product').find_link('Details').trigger('click')
     
     # VERIFY

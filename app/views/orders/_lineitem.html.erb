@@ -1,6 +1,7 @@
  <div class="panel panel-default items">
+ <% if current_user %>
        <h3>Email Address: <%= current_user.email %></h3>
-
+ <% end %>  
     <table class="table table-bordered">
       <thead>
         <tr>
